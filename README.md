@@ -1,3 +1,3 @@
-# machine_learning
+# Machine Learning
 
 CMS project for machine learning
