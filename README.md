@@ -1,3 +1,3 @@
 # Machine Learning
 
-CMS project for machine learning
+CMS project for machine learning.
