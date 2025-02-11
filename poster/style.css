@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+h1,
+h3 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 html,
 body {
     background-color: #dce9f5;
@@ -22,7 +31,6 @@ header#header {
 }
 
 header#header > h1 {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 900;
     line-height: 50px;
     font-size: 35px;
@@ -53,7 +61,6 @@ div#content > div.column {
 
 div.column > * {
     margin: 6px;
-    background-color: red;
 }
 
 div.column > .text {
@@ -62,6 +69,24 @@ div.column > .text {
 }
 
 div.column > .text > .header {
-    border-radius: 5px;
+    padding: 0 4px 2px;
+    border-radius: 8px;
+    background-color: #ad97ff;
+}
+
+div.column > .text > p {
+    padding: 3px;
+}
+
+div.column > .text#references {
+    border-radius: 12px 12px 8px 8px;
+    border: solid 3px #ad97ff;
+    border-width: 0 3px 3px 3px;
+    background-color: #ae97ff53;
+}
+
+div.column > .text#references > .header {
+    padding: 0 4px 2px;
+    border-radius: 8px 8px 0 0;
     background-color: #ad97ff;
 }
