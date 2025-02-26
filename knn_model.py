@@ -1,11 +1,26 @@
+print('code running...')
 import numpy as np
+print('numpy imported')
 import pandas as pd
+print('pandas imported')
 from sklearn.neighbors import KNeighborsClassifier as KNN
+print('knn imported')
+
+
+# print('Check file exists')
+# with open('fraudTrain.csv', 'r') as f_in:
+#     for line in f_in:
+#         print(line)
 
 print('Pandas Practice')
 
-fraud_df = pd.read_csv('fraud_test_synthetic/fraudTrain.csv')
-test_df = pd.read_csv('fraud_test_synthetic/fraudTrain.csv')
+full_df = pd.read_csv('fraudTrain.csv')
+fraud_df = pd.read_csv('fraudTrain.csv').head(100)
+test_df = pd.read_csv('fraudTest.csv').head(100)
+
+# print("last index where is_fraud is true:" + str(full_df.index[full_df['is_fraud']]))
+print("indexes of rows where is_fraud is true:")
+print(full_df.loc[full_df["is_fraud"], full_df[["trans_date_trans_time", "merchant", "is_fraud"]]])
 
 print(fraud_df.head())
 print(fraud_df.columns)
@@ -24,3 +39,6 @@ knn.fit(X, y)
 test_X = test_df[['lat', 'long']].values
 
 print(knn.predict(test_X))
+
+# returns first index where is_fraud is true: df.index[df['is_fraud']]
+# reverse a dataframe: df.iloc[::-1]
