@@ -5,7 +5,11 @@
 }
 
 h1,
-h3 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -69,10 +73,14 @@ div.column > .text {
     text-align: justify;
 }
 
-div.column > .header {
+div.column > .header:has(h2) {
     padding: 0 4px 2px;
     border-radius: 8px;
     background-color: #ad97ff;
+}
+
+div.column > .header:has(h3) {
+    padding: 0 4px 0;
 }
 
 div.column > .text > p {
