@@ -5,7 +5,11 @@
 }
 
 h1,
-h3 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -66,12 +70,17 @@ div.column > * {
 div.column > .text {
     border-radius: 5px;
     background-color: #0000;
+    text-align: justify;
 }
 
-div.column > .text > .header {
+div.column > .header:has(h2) {
     padding: 0 4px 2px;
     border-radius: 8px;
     background-color: #ad97ff;
+}
+
+div.column > .header:has(h3) {
+    padding: 0 4px 0;
 }
 
 div.column > .text > p {
@@ -79,13 +88,15 @@ div.column > .text > p {
 }
 
 div.column > .text#references {
-    border-radius: 12px 12px 8px 8px;
+    margin-top: 0;
+    border-radius: 0 0 8px 8px;
     border: solid 3px #ad97ff;
     border-width: 0 3px 3px 3px;
     background-color: #ae97ff53;
 }
 
-div.column > .text#references > .header {
+div.column > .header.references {
+    margin-bottom: 0;
     padding: 0 4px 2px;
     border-radius: 8px 8px 0 0;
     background-color: #ad97ff;
