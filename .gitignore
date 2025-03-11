@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 *.csv
 .env
+=======
+*.csv
+.DS_Store
+.vite
+>>>>>>> 3b06e2de6f834182a15ac801963104a0422ac389
