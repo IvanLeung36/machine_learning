@@ -6,6 +6,10 @@ print('pandas imported')
 from sklearn.neighbors import KNeighborsClassifier as KNN
 print('knn imported')
 
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+print(dir_path)
+
 
 # print('Check file exists')
 # with open('fraudTrain.csv', 'r') as f_in:
