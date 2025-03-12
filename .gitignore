@@ -1,4 +1,4 @@
 *.csv
 .DS_Store
 .vite
-poster/.vite
+*/.vite
