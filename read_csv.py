@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pandas as pd
 import plotly.express as px
 import matplotlib
@@ -33,11 +32,8 @@ print(df.info())
 print(df.describe())
 print("Plot saved as 'city_pop_distribution_plot.html'. Open this file in your browser.")
 # Value against fraud or non fraud
-=======
-import pandas as pd
 
 pd.options.display.max_rows = 20000
 df = pd.read_csv('fraudTest.csv')
 
 print(df)
->>>>>>> 3b06e2de6f834182a15ac801963104a0422ac389

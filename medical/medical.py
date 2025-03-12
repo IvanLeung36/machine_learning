@@ -4,6 +4,8 @@ import plotly.express as px
 import plotly.io as pio
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 pio.renderers.default = "browser"
 
@@ -87,18 +89,38 @@ plt.ylabel('Charges')
 plt.legend(['Estimate', 'Actual'])
 plt.show()
 
+def rmse(targets, predictions):
+    return np.sqrt(np.mean(np.square(targets - predictions)))
 def try_parameters(w, b):
     ages = non_smoker_df.age.to_numpy()
     target = non_smoker_df.charges.to_numpy()
+    predictions = estimate_charges(ages, w, b)
     
-    estimated_charges = estimate_charges(ages, w, b)
-    
-    plt.plot(ages, estimated_charges, 'r', alpha=0.9)
+    plt.plot(ages, predictions, 'r', alpha=0.9)
     plt.scatter(ages, target, s=8,alpha=0.8)
     plt.xlabel('Age')
     plt.ylabel('Charges')
-    plt.title(f'w = {w}, b = {b}')
-    plt.legend(['Estimate', 'Actual'])
+    plt.legend(['Prediction', 'Actual'])
     plt.show()
+    
+    loss = rmse(target, predictions)
+    print("RMSE Loss: ", loss)
+
 try_parameters(400,2000)
 try_parameters(300,-1900)
+
+# Linear Regression Model with losses
+targets = non_smoker_df['charges']
+predicted = estimate_charges(non_smoker_df.age, w, b)
+rmse(targets, predicted)
+
+# Linear Regression Model with sklearn
+model = LinearRegression()
+inputs = non_smoker_df[['age']]
+targets = non_smoker_df.charges
+print('inputs.shape :', inputs.shape)
+print('targes.shape :', targets.shape)
+print(model.fit(inputs, targets))
+print(model.predict(np.array([[23], 
+                        [37], 
+                        [61]])))
