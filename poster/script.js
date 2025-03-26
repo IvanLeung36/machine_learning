@@ -8,11 +8,7 @@ let refNum = 1;
 let refPinnerHTMLList = [];
 
 for (const ref of refList) {
-    ref.removeAttribute("ref");
-
     let attributes = {};
-
-    console.log(ref.attributes);
 
     for (const attribute of ref.attributes) {
         attributes[attribute.name] = attribute.value;
@@ -22,10 +18,11 @@ for (const ref of refList) {
 
     ref.innerHTML = `<a href="${attributes.src}" target="_blank" rel="noopener noreferrer">[${refNum}]</a>`;
 
-    refPinnerHTMLList.push(`<sup>[${refNum}]</sup> From ${attributes.author}, taken at ${attributes.date}`);
-    console.log(attributes);
+    refPinnerHTMLList.push(
+        `<sup>[${refNum}]</sup> From ${attributes.author}, taken at ${attributes.date}<br /><a href="${attributes.src}">${attributes.src}<a/>`
+    );
 
     refNum++;
 }
 
-refP.innerHTML += refPinnerHTMLList.join("<br />");
+refP.innerHTML += refPinnerHTMLList.join("<br /><br />");
