@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Tree Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        #features {
+            height: 230px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            color: #555;
+        }
+        select, input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction Predictor</h1>
+        <form id="predict-form">
+            <label for="features">Select Categories:</label>
+            <select id="features" name="features" multiple>
+                <option value="category_food_dining">Food & Dining</option>
+                <option value="category_gas_transport">Gas & Transport</option>
+                <option value="category_grocery_net">Grocery Net</option>
+                <option value="category_grocery_pos">Grocery POS</option>
+                <option value="category_health_fitness">Health & Fitness</option>
+                <option value="category_home">Home</option>
+                <option value="category_kids_pets">Kids & Pets</option>
+                <option value="category_misc_net">Misc Net</option>
+                <option value="category_misc_pos">Misc POS</option>
+                <option value="category_personal_care">Personal Care</option>
+                <option value="category_shopping_net">Shopping Net</option>
+                <option value="category_shopping_pos">Shopping POS</option>
+                <option value="category_travel">Travel</option>
+            </select>
+            <label for="amount">Enter Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01">
+            <label for="model">Model:</label>
+            <select id="model" name="model">
+                <option value="tree">Decision Tree</option>
+                <option value="knn">kNN</option>
+            </select>
+            <button type="submit">Predict</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+    document.getElementById('predict-form').addEventListener('submit', function(event) {
+    event.preventDefault()
+    let selectedOptions = document.getElementById('features').selectedOptions
+    let features = Array.from(selectedOptions).map(option => option.value)
+    let amount = parseFloat(document.getElementById('amount').value)
+    let model = document.getElementById('model').value
+    fetch('/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ features: features, amount: amount, model: model })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText = 'Prediction: ' + data.prediction;
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    })
+})
+    </script>
+</body>
+</html>

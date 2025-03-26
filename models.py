@@ -1,14 +1,12 @@
 import pandas as pd
-import numpy as np
-
+import joblib
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-df = pd.read_csv('../../csvs/fraudTrain.csv')
-test_df = pd.read_csv('../../csvs/fraudTest.csv')
+df = pd.read_csv('csvs/fraudTrain.csv')
+test_df = pd.read_csv('csvs/fraudTest.csv')
 
 # Making a new df with equal parts fraud and non-fraud (to reduce bias in model)
-
 fraud_trans = df[df['is_fraud'] == 1]
 non_fraud_trans = df[df['is_fraud'] == 0]
 
@@ -17,12 +15,9 @@ len_fraud = len(fraud_trans)
 rand_non_fraud = non_fraud_trans.sample(n=len_fraud, random_state=42)
 
 balanced_df = pd.concat([fraud_trans, rand_non_fraud])
-
 balanced_df = balanced_df.sort_values('unix_time').reset_index(drop=True)
-balanced_df
 
 # getting features
-
 features = []
 
 # one-hot encoding 'category'
@@ -38,8 +33,10 @@ for x in balanced_df:
 
 features.append('amt')
 
-# Splitting up into train and test variables
+# Print the features
+print("Features used for training:", features)
 
+# Splitting up into train and test variables
 X_train = balanced_df[features].values
 y_train = balanced_df['is_fraud'].values
 X_test = test_df[features].values
@@ -50,10 +47,11 @@ knn = KNeighborsClassifier(n_neighbors=6)
 knn.fit(X_train, y_train)
 knn_pred = knn.predict(X_test)
 
-# Descision tree
+# Decision tree
 tree = DecisionTreeClassifier()
 tree.fit(X_train, y_train)
 tree_pred = tree.predict(X_test)
 
-
-
+# Saving models
+joblib.dump(knn, 'knn_model.pkl')
+joblib.dump(tree, 'decision_tree_model.pkl')
