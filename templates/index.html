@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision Tree Predictor</title>
+    <link rel="icon" href="/SCAM.webp" type="image/x-icon">
+    <title>Transaction Predictor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,9 +22,6 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
-        }
-        #features {
-            height: 230px;
         }
         h1 {
             text-align: center;
@@ -82,6 +80,8 @@
                 <option value="category_shopping_pos">Shopping POS</option>
                 <option value="category_travel">Travel</option>
             </select>
+            <label for="hour">Enter Time of Transaction in 24-hour time (0-23):</label>
+            <input type="number" id="hour" name="hour" min="0" max="23" step="1">
             <label for="amount">Enter Amount:</label>
             <input type="number" id="amount" name="amount" step="0.01">
             <label for="model">Model:</label>
@@ -97,23 +97,35 @@
     <script>
     document.getElementById('predict-form').addEventListener('submit', function(event) {
     event.preventDefault()
-    let selectedOptions = document.getElementById('features').selectedOptions
-    let features = Array.from(selectedOptions).map(option => option.value)
+    let feature = document.getElementById('features').value
+    let features = [feature]
+    let hour = parseInt(document.getElementById('hour').value)
     let amount = parseFloat(document.getElementById('amount').value)
     let model = document.getElementById('model').value
+    console.log(JSON.stringify({ features: features, hour: hour, amount: amount, model: model }))
     fetch('/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ features: features, amount: amount, model: model })
+        body: JSON.stringify({ features: features, hour: hour, amount: amount, model: model })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        return response.json()
+    })
     .then(data => {
-        document.getElementById('result').innerText = 'Prediction: ' + data.prediction;
+        if (data.error) {
+            document.getElementById('result').innerText = 'Error: ' + data.error
+        } else {
+            document.getElementById('result').innerText = 'Prediction: ' + data.prediction
+        }
     })
     .catch(error => {
         console.error('Error:', error)
+        document.getElementById('result').innerText = 'An error occurred. Please try again.'
     })
 })
     </script>
