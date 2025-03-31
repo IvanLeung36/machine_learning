@@ -84,19 +84,6 @@
                 </div>
             </div>
             <div class="column">
-                <div class="text">
-                    <p>
-                        \[ \frac{1}{h}\sum_{i=1}^{h}(e_i)^2 \]
-                    </p>
-                </div>
-                <div class="text">
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint distinctio in alias eos suscipit eligendi, ut id dolorem
-                        aliquid. Qui quaerat tempora aut velit distinctio, expedita fugiat esse iste! Maxime.
-                    </p>
-                </div>
-            </div>
-            <div class="column">
                 <div class="header"><h2 class="header">Applications</h2></div>
                 <div class="text">
                     <p>
@@ -110,7 +97,7 @@
                     </p>
                     <div class="header"><h3 class="header">Selecting Model</h3></div>
                     <p>
-                        There are many classification models that we could use, such as Random Forest, Support Vector Machine, Neural Networks, Decision Trees, KNN, etc.
+                        There are many classification models that we could use, such as Random Forest, Support Vector Machine, Neural Networks, Decision Trees, kNN, etc.
                         We have decidede to use a supervised model. This means that the model learns from labeled data, meaning each input has a known output (e.g., fraud/not fraud). 
                         This is different to an unsupervised model which finds patterns in unlabeled data, such as grouping similar transactions without predefined fraud labels.
                         We have to choose a model that is suitable for our data and the problem we are trying to solve.
@@ -120,8 +107,32 @@
 
                     </p>
                 </div>
+                <div class="header"><h2 class="header">Classification</h2></div>
+                <p>A classification model is a type of machine learning model that categorizes data into predefined classes, known as labels. It learns patterns from labeled training data and predicts the class of new, unseen data. For example, in fraud detection, the labels could be "fraudulent" or "genuine."
+                    To build an effective model, the dataset is typically split into training, validation, and test sets to ensure the model generalizes well. A common split is training (70-80%), used for learning, and testing (20-30%), used for evaluation.
+                    <br><br>Two common issues in classification are:</p>
+                    <ul>
+                        <li><b>Underfitting</b>: The model is too simple and fails to learn meaningful patterns, resulting in poor accuracy on both training and test data.</li>
+                        <li><b>Overfitting</b>: The model learns the training data too well, capturing noise instead of general patterns, leading to poor performance on new data.</li>
+                    </ul>
+                    <div class="img">
+                        <img
+                            width="400"
+                            src="fitting.png"
+                            alt="Fitting" />
+                        <p class="caption">
+                            <sup ref author="Flask" date="31/03/2025" src="https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/"></sup>
+                            Graph representation for overfitting and underfitting
+                        </p>
+                    </div>
+                    <p>A well-balanced model avoids both overfitting and underfitting to ensure accurate predictions on real-world data.</p>
+            </div>
+            <div class="column">
                 <div class="header"><h2 class="header">Analysing Data</h2></div>
-                <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
+                <p>To create an accurate model, we first needed to understand the problem: 
+                    Which values in the dataset (we used synthetic data from Kaggle<sup ref author="Kaggle" date="31/03/2025" src="https://www.kaggle.com/datasets/kartik2112/fraud-detection/data"></sup>, 
+                    which accurately represents real bank transactions) would be useful in predicting whether a transaction is fraudulent. 
+                    We began our analysis by plotting various features (e.g., credit card numbers, transaction locations) against the fraud label to identify patterns that could help predict fraudulent transactions.</p>                <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
                 <div class="header"><h2 class="header">Decision Tree</h2></div>
             </div>
             <div class="column">
@@ -134,7 +145,7 @@
                 </p>
                 <div class="img">
                     <img
-                        width="200"
+                        width="270"
                         src="frontend.png"
                         alt="Frontend" />
                 </div>
