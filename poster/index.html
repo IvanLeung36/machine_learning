@@ -73,14 +73,28 @@
                         from the output and ending at the input (each dimention of the function is a weight/bias in the neurons of a layer, meaning it
                         can have huge numbers of dimentions) to find how to tweak each parameter (weight or bias) to minimise the function (i.e get
                         the results we want.) -->
-                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. The weights and biases are then updated using gradient descent. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates[ reference to https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/]), over multiple iterations to minimise the cost function.<sup
+                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). The cost function for one training example: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \]
+                        It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. The weights and biases are then updated using gradient descent. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup
+                        ref
+                        author=""
+                        date="31/03/2025"
+                        src="https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/"></sup>), over multiple iterations to minimise the cost function, gradually improving its accuracy over time.<sup
                         ref
                         author="Nielsen MA"
                         date="30/03/2025"
                         src="http://neuralnetworksanddeeplearning.com/chap2.html"></sup>
-                </p>
                     </p>
-                    <p>\[ \int_{a}^{b} x^2 \,dx = \frac{b^3}{3} - \frac{a^3}{3} \]</p>
+
+                    <p>
+                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, defined as the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error for a neuron can be written as follows:
+                
+                    
+                    \[ \delta_j^l = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]</p>
+                    <p>For easier computation, we can rewrite the equation in a matrix-based form:
+                        \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
+                        If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as we effectively move the error backwards through the network:
+                        \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot \sigma'(z^l) \]
+                    </p>
                 </div>
             </div>
             <div class="column">
