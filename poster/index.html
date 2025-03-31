@@ -16,6 +16,7 @@
     <body>
         <header id="header">
             <h1>Machine Learning</h1>
+            <h2></h2>
             <p>TM</p>
         </header>
         <div id="cms-logo-wrapper">
@@ -113,14 +114,33 @@
                         We have decidede to use a supervised model. This means that the model learns from labeled data, meaning each input has a known output (e.g., fraud/not fraud). 
                         This is different to an unsupervised model which finds patterns in unlabeled data, such as grouping similar transactions without predefined fraud labels.
                         We have to choose a model that is suitable for our data and the problem we are trying to solve.
+                        We have briefly look at many models, such as Support Vector Machine (SVM), linear regression, etc.
+                        However we decided that kNN and Decision Tree are the most suitable for our data since they are easy to interpret, 
+                        handle both numerical and categorical features well, and perform effectively with our dataset size and structure.
+
                     </p>
                 </div>
+                <div class="header"><h2 class="header">Analysing Data</h2></div>
                 <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
                 <div class="header"><h2 class="header">Decision Tree</h2></div>
             </div>
             <div class="column">
                 <div class="header"><h2 class="header">Evaluation</h2></div>
                 <div class="header"><h2 class="header">Frontend</h2></div>
+                <p>
+                    We have designed a transaction predictor webpage that allows users to upload a set of transaction data and we can determine if the transaction is fraudulent or genuine.
+                    This was being done by using a Flask API<sup ref author="Flask" date="31/03/2025" src="https://flask.palletsprojects.com/en/stable/"></sup> to handle the backend, using joblib<sup ref author="joblib" date="31/03/2025" src="https://joblib.readthedocs.io/en/stable/"></sup> to load the pre-trained model and feature packages, finally using HTML, CSS and Javascript to connect to the backend.
+                    It can be accessed at <a href="https://machinelearners.onrender.com">https://machinelearners.onrender.com</a>.
+                </p>
+                <div class="img">
+                    <img
+                        width="200"
+                        src="frontend.png"
+                        alt="Frontend" />
+                </div>
+                <p>
+                    In the above example, a ridiculous set of data is being input to the transaction predictor
+                </p>
                 <div class="header references"><h2>References</h2></div>
                 <div id="references" class="text"><p></p></div>
             </div>
