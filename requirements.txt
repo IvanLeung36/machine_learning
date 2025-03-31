@@ -1,0 +1,4 @@
+Flask
+joblib
+scikit-learn
+pandas

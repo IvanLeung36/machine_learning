@@ -63,7 +63,7 @@
                 <div class="header"><h3 class="header">Backpropagation</h3></div>
                 <div class="text">
                     <p>
-                        Backpropagation is a method used for gradient estimation<sup
+                        <!-- Backpropagation is a method used for gradient estimation<sup
                             ref
                             author="Wikipedia"
                             date="24/04/2025"
@@ -71,7 +71,13 @@
                         >, which is key for training a neural network. It estimates the gradient of the <b>loss function</b> for each layer, starting
                         from the output and ending at the input (each dimention of the function is a weight/bias in the neurons of a layer, meaning it
                         can have huge numbers of dimentions) to find how to tweak each parameter (weight or bias) to minimise the function (i.e get
-                        the results we want.)
+                        the results we want.) -->
+                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. The weights and biases are then updated using gradient descent. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates[ reference to https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/]), over multiple iterations to minimise the cost function.<sup
+                        ref
+                        author="Nielsen MA"
+                        date="30/03/2025"
+                        src="http://neuralnetworksanddeeplearning.com/chap2.html"></sup>
+                </p>
                     </p>
                     <p>\[ \int_{a}^{b} x^2 \,dx = \frac{b^3}{3} - \frac{a^3}{3} \]</p>
                 </div>
