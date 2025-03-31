@@ -41,5 +41,9 @@ def predict():
 
     return jsonify({'prediction': prediction_label})
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
