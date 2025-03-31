@@ -172,12 +172,6 @@
                     d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
                     \]                    
                     The value of k determines how many neighbors are considered for classification; the most common class among these neighbors is assigned to the new data point.
-                    In our implementation, the dataset is first split into features (X) and labels (y). The training set (X_train, y_train) comes from balanced_df, 
-                    ensuring that fraud and non-fraud cases are more evenly distributed to prevent bias. The test set (X_test, y_test) is used for evaluation. 
-                    The kNN model is then initialized with k = 6 using KNeighborsClassifier(n_neighbors=6), 
-                    meaning each transaction will be classified based on the majority class among its six nearest neighbors. 
-                    Finally, we train the model using .fit(X_train, y_train), allowing it to store the training data for future predictions. 
-                    To further improve performance, we can experiment with different values of n_neighbors.
                 </p>
                 <div class="img">
                     <img
@@ -185,6 +179,14 @@
                         src="knn_code.png"
                         alt="knn_code" />
                 </div>
+                <p>
+                    In our implementation, the dataset is first split into features (X) and labels (y). The training set (X_train, y_train) comes from balanced_df, 
+                    ensuring that fraud and non-fraud cases are more evenly distributed to prevent bias. The test set (X_test, y_test) is used for evaluation. 
+                    The kNN model is then initialized with k = 6 using KNeighborsClassifier(n_neighbors=6), 
+                    meaning each transaction will be classified based on the majority class among its six nearest neighbors. 
+                    Finally, we train the model using .fit(X_train, y_train), allowing it to store the training data for future predictions. 
+                    To further improve performance, we can experiment with different values of n_neighbors.
+                </p>
                 <div class="header"><h2 class="header">Decision Tree</h2></div>
             </div>
             <div class="column">
