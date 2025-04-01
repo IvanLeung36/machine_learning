@@ -151,9 +151,9 @@
                         <img
                             width="400"
                             src="categories.png"
-                            alt="categories against time" />
+                            alt="percentage per categories" />
                     </div>
-                    <p class="caption" style="text-align: center;">(Transactions categories against time graph)</p>
+                    <p class="caption" style="text-align: center;">(Percentage of transactions per category graph)</p>
                     <div class="img">
                         <img
                             width="400"
@@ -202,6 +202,16 @@
                     To further improve performance, we can experiment with different values of n_neighbors.
                 </p>
                 <div class="header"><h2 class="header">Decision Tree</h2></div>
+                <p>
+                    Decision Trees are another non-parametric, supervised-learning based and easy-to-understand type of maching learning
+                    model, used for classification and regression. This model learns certain rules that the data seems to follow to decide what the target
+                    variable should be, based on the data given, and uses this to predict the label of new data, checking at different stages if certain
+                    characteristics are true or false, as if passing the data through a flow chart.
+                </p>
+                <p>
+                    Decision Trees are very efficient in terms of time, with a similar time complexity of to kNN. However, they're prone to overfitting: even the slightest change in the training data will result in
+                    a completely different tree being generated. This wasn't an issue for our data, however, because ours wasn't being live-fed, so it wasn't changing at all.
+                </p>
             </div>
             <div class="column">
                 <div class="header"><h2 class="header">Evaluation</h2></div>
