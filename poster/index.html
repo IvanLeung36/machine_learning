@@ -86,10 +86,9 @@
                     </p>
 
                     <p>
-                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, defined as the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error for a neuron can be written as follows:
-                
-                    
-                    \[ \delta_j^l = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]</p>
+                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, which we call the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error is defined as follows: 
+                        \[ \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]
+                    </p>
                     <p>For easier computation, we can rewrite the equation in a matrix-based form:
                         \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
                         If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as we effectively move the error backwards through the network:
