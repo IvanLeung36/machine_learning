@@ -46,21 +46,27 @@
                             ref
                             author="Wikipedia"
                             date="03/03/2025"
-                            src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup
-                        >. They consist of layers of neurons connected by weights: an input layer that recieves data, one or more hidden layers that
+                            src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup>.
+                            They consist of layers of neurons connected by weights: an input layer that recieves data, one or more hidden layers that
                         process the data, and an output layer that produces the final output. Each neuron (except in the input layer) calculates a
                         weighted sum of its inputs, adds a bias, and applies an activation function to produce its ouput.
                     </p>
                 </div>
                 <div class="img">
-                    <img width="480" src="./network.png" alt="Alt Text (image example)" />
-                    <p class="caption">Example of a small neural network</p>
+                    <img
+                    width="480"
+                    src="./network.png"
+                    alt="Alt Text (image example)" />
+                    <p class="caption">
+                    Example of a small neural network
+                </p>
                 </div>
                 <div class="text">
                     <p>
-                        The sigmoid function is a common activation function defined as: \[ \sigma(z) = \frac{1}{1 + e^{-z}} \] where \(z_j^{l}\) is
-                        defined as the weighted sum of the j<sup>th</sup> neuron in the l<sup>th</sup> layer: \[ z_j^{l} = \sum_{k=1}^{n} w_{jk}^{l}
-                        a_k^{l-1} + b_j^{l} \quad \quad a_j^{l} = \sigma(z_j^{l}) \] It squashes any input into the range (0,1), making it useful for
+                        The sigmoid function is a common activation function defined as:
+                        \[ \sigma(z) = \frac{1}{1 + e^{-z}} \]
+                        where \(z_j^{l}\) is defined as the weighted sum of the j<sup>th</sup> neuron in the l<sup>th</sup> layer: \[ z_j^{l} = \sum_{k=1}^{n} w_{jk}^{l} a_k^{l-1} + b_j^{l} \quad \quad a_j^{l} = \sigma(z_j^{l}) \]
+                        It squashes any input into the range (0,1), making it useful for
                         models that output probabilities. However, it suffers from the vanishing gradient problem, where gradients become too small
                         during backpropagation, slowing down learning.
                     </p>
@@ -78,21 +84,20 @@
                         can have huge numbers of dimentions) to find how to tweak each parameter (weight or bias) to minimise the function (i.e get
                         the results we want.) -->
                         Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE).
-                        The cost function for one training example is shown below: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \] It works by
-                        calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference
-                        to 3b1b].
+                        The cost function for one training example is shown below: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \]
+                        It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b].
                     </p>
 
                     <p>
                         In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, which we
                         call the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially
-                        representing how the activation in each neuron contributes to the overall error. The error is defined as follows: \[
-                        \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial b_j^l} = \frac{\partial C}{\partial a_j^l} \cdot
-                        \sigma '(z_j^l) \]
+                        representing how the activation in each neuron contributes to the overall error. The error is defined as follows:
+                        \[ \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial b_j^l} = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]
                     </p>
                     <p>
-                        For easier computation, we can rewrite the equation in a matrix-based form: \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \] If
-                        we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as
+                        For easier computation, we can rewrite the equation in a matrix-based form:
+                        \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
+                        If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as
                         we effectively move the error backwards through the network: \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot
                         \sigma'(z^l) \] An equation for the rate of change of the cost function with respect to any weight or bias in the network: \[
                         \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1} \cdot \delta ^{l}_{j} \quad \quad \frac{\partial C}{\partial b_j^l} =
