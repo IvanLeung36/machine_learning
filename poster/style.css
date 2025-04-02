@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    text-align: justify;
 }
 
 h1,
@@ -11,11 +13,13 @@ h4,
 h5,
 h6 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    text-align: center;
 }
 
 p {
     font-family: Arial, Helvetica, sans-serif;
-    text-align: left;
+    text-align: justify;
 }
 
 /* html,
@@ -29,11 +33,11 @@ body::-webkit-scrollbar {
 ul {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    text-align: left;
+    text-align: justify;
     margin-top: 0;
 }
 header#header {
-    height: 80px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,8 +53,9 @@ header#header > h1 {
 }
 
 #group-names {
-    margin-bottom: 10px;
-}   
+    font-size: 13px;
+    line-height: 15px;
+}
 
 div#cms-logo-wrapper {
     position: absolute;
@@ -75,8 +80,9 @@ div#content > div.column {
     height: fit-content;
 }
 
-ul,li {
-    margin-left: 20px
+ul,
+li {
+    margin-left: 20px;
 }
 
 div.column > * {
@@ -119,7 +125,7 @@ div.column > .header.references {
     background-color: #ad97ff;
 }
 
-#references  {
+#references {
     text-align: left;
 }
 
