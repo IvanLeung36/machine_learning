@@ -225,8 +225,11 @@
             </div>
             <div class="column">
                 <div class="header"><h2 class="header">Evaluation</h2></div>
-                <p>When measuring the efficiency of anything, the first method that comes to mind is measuring it's accuracy, the number of correct predictions over the total number of predictions. However, this isn't as useful as it seems. Say you have 100 training examples, 98 of which are not fraud and 2 of which are fraud.
-                    A dummy model could predict all of these as not fraud and would end up with 98% accuracy, which seems high, but in fact the model is incapable of distinguishing between the 2 classes. As seen, this is mainly an issue when there is an imbalance in the amount of examples of each class.
+                <p>
+                    When measuring the efficiency of anything, the first method that comes to mind is measuring it's accuracy, the number of correct
+                    predictions over the total number of predictions. However, this isn't as useful as it seems. Say you have 100 training examples,
+                    98 of which are not fraud and 2 of which are fraud. A dummy model could predict all of these as not fraud and would end up with
+                    98% accuracy, which seems high, but in fact the model is incapable of distinguishing between the 2 classes.
                     <br><br>Before looking at other measures of efficiency, some terms that should be known are:</p> 
 
                     <p> 
@@ -244,11 +247,11 @@
                         </ul> 
 
                     </p> 
-
-                    <p>The methods that we used to measure our models: </p> 
+                    <p>These are the methods that we used to measure our models: </p> 
                     <div class="header"><h3 class="header">Precision & Recall</h3></div>
-                    <p>Precision is a measure of how good the model is at correctly identifying a positive case, in this case
-                        identifying fraud alone. The formula for this is:
+                    <p>
+                        Precision is a measure of how good the model is at correctly identifying a positive case, in this
+                        case identifying fraud alone. The formula for this is:
                         \[
                         Precision = \frac{TP}{TP+FP} 
                         \]

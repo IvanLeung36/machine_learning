@@ -16,7 +16,7 @@
     <body>
         <header id="header">
             <h1>Machine Learning</h1>
-            <h2 id="group-names">Jeremy Courten, Ivan Leung, Robert Ellard, Avni Balan<br /><sup>Special Thanks to the person</sup></h2>
+            <h2 id="group-names">Jeremy Courten, Ivan Leung, Robert Ellard, Avni Balan<br /><sup>Special Thanks to Michael Andrejczuk!</sup></h2>
         </header>
         <div id="cms-logo-wrapper">
             <a href="https://cms.tela.org.uk">
@@ -239,16 +239,52 @@
                     When measuring the efficiency of anything, the first method that comes to mind is measuring it's accuracy, the number of correct
                     predictions over the total number of predictions. However, this isn't as useful as it seems. Say you have 100 training examples,
                     98 of which are not fraud and 2 of which are fraud. A dummy model could predict all of these as not fraud and would end up with
-                    98% accuracy, which seems high, but in fact the model is incapable of distinguishing between the 2 classes. As seen, this is
-                    mainly an issue when there is an imbalance in the amount of examples of each class. <br /><br />
-                    Other methods will measure, for example, how good the model is at predicting only fraud transactions, or how good it is at
-                    distinguishing between the two. These methods are:
-                </p>
+                    98% accuracy, which seems high, but in fact the model is incapable of distinguishing between the 2 classes.
+                    <br><br>Before looking at other measures of efficiency, some terms that should be known are:</p> 
+
+                    <p> 
+
+                        <ul> 
+
+                            <li><b>True Positives (TP)</b>: positive cases that have been labeled as positive</li> 
+
+                            <li><b>False Positives (FP)</b>: negative cases that have been labeled as positive</li> 
+
+                            <li><b>True Negatives (TN)</b>: negative cases that have been labeled as negative</li> 
+
+                            <li><b>False Negatives (FN)</b>: positive cases that have been labeled as negative</li> 
+
+                        </ul> 
+
+                    </p>
+                    <p>These are the methods that we used to measure our models: </p> 
                 <div class="header"><h3 class="header">Precision & Recall</h3></div>
                 <p>
-                    Precision, also called True Positive Rate, is a measure of how good the model is at correctly identifying a positive case, in this
-                    case identifying fraud alone. The formula for this is: \[ Precision = \frac{TP}{TP+FP} \]
-                </p>
+                    Precision is a measure of how good the model is at correctly identifying a positive case, in this
+                    case identifying fraud alone. The formula for this is:
+                    \[
+                    Precision = \frac{TP}{TP+FP}
+                    \]
+                    Recall (also called true positive rate) is a measure of the fraction of actual positive cases that were correctly identified: 
+
+                        \[ 
+
+                        Recall = \frac{TP}{TP+FN} 
+
+                        \] 
+
+                        These are normally used in tandem to make sure the model can accurately predict positive labels. In the case of our models, our kNN model had a precision and a recall of 6.03% and 93.57% respectively, and in the case of our decision tree, a precision of 7.16% and recall of 94.27%. While a low precision might seem bad, this is just because of the massive imbalance in our dataset; only a small fraction of the set is fraud, but despite this, the model initially assumes every entry has a 50% chance of being fraud or not. This leads to multiple false positives, leading to a low precision.
+                    </p> 
+
+                    <div class="header"><h3 class="header">Area Under ROC Curve</h3></div> 
+
+                    <p> 
+
+                        A Receiver-operating characteristic (ROC) curve is a graph of true positive rate (or recall) plotted against false positive rate (the total false positives over true negatives and false positives). The area under this curve can be used to show how well the model can distinguish between the two classes. 
+
+                    </p> 
+
+
 
                 <div class="header"><h2 class="header">Frontend</h2></div>
                 <p></p>
