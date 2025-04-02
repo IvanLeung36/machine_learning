@@ -16,7 +16,7 @@
     <body>
         <header id="header">
             <h1>Machine Learning</h1>
-            <p>TM</p>
+            <h2 id="group-names">Jeremy Courten, Ivan Leung, Robert Ellard, Avni Balan</h2>
         </header>
         <div id="cms-logo-wrapper">
             <a href="https://cms.tela.org.uk">
@@ -42,28 +42,33 @@
                 <div class="header"><h2 class="header">Neural Networks</h2></div>
                 <div class="text">
                     <p>
-                        Neural networks are a type of Machine Learning which is inspired by inspired by the structure and function of biological
-                        neural networks, in brains<sup
-                            ref
-                            author="Wikipedia"
-                            date="03/03/2025"
-                            src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup>
+                        Neural networks are a type of machine learning model inspired by the way biological neural networks in the brain function<sup
+                        ref
+                        author="Wikipedia"
+                        date="03/03/2025"
+                        src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup>. They consist of layers of neurons connected by weights: an input layer that recieves data, one or more hidden layers that process the data, and an output layer that produces the final output. Each neuron (except in the input layer) calculates a weighted sum of its inputs, adds a bias, and applies an activation function to produce its ouput. 
                     </p>
                 </div>
                 <div class="img">
                     <img
-                        width="200"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/375px-Colored_neural_network.svg.png"
+                        width="480"
+                        src="./network.png"
                         alt="Alt Text (image example)" />
                     <p class="caption">
-                        <sup ref author="Wikipedia" date="24/04/2025" src="https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"></sup
-                        >Example of a small neural network
+                        Example of a small neural network
+                    </p>
+                </div>
+                <div class="text">
+                    <p>The sigmoid function is a common activation function defined as: 
+                        \[ \sigma(z) = \frac{1}{1 + e^{-z}} \]
+                        where \(z_j^{l}\) is defined as the weighted sum of the j<sup>th</sup> neuron in the l<sup>th</sup> layer: \[ z_j^{l} = \sum_{k=1}^{n} w_{jk}^{l} a_k^{l-1} + b_j^{l} \quad \quad a_j^{l} = \sigma(z_j^{l}) \] 
+                        It squashes any input into the range (0,1), making it useful for models that output probabilities. However, it suffers from the vanishing gradient problem, where gradients become too small during backpropagation, slowing down learning.
                     </p>
                 </div>
                 <div class="header"><h3 class="header">Backpropagation</h3></div>
                 <div class="text">
                     <p>
-                        Backpropagation is a method used for gradient estimation<sup
+                        <!-- Backpropagation is a method used for gradient estimation<sup
                             ref
                             author="Wikipedia"
                             date="24/04/2025"
@@ -71,33 +76,185 @@
                         >, which is key for training a neural network. It estimates the gradient of the <b>loss function</b> for each layer, starting
                         from the output and ending at the input (each dimention of the function is a weight/bias in the neurons of a layer, meaning it
                         can have huge numbers of dimentions) to find how to tweak each parameter (weight or bias) to minimise the function (i.e get
-                        the results we want.)
+                        the results we want.) -->
+                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). The cost function for one training example is shown below: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \]
+                        It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. 
                     </p>
-                    <p>\[ \int_{a}^{b} x^2 \,dx = \frac{b^3}{3} - \frac{a^3}{3} \]</p>
+
+                    <p>
+                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, which we call the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error is defined as follows: 
+                        \[ \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial b_j^l} = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]
+                    </p>
+                    <p>For easier computation, we can rewrite the equation in a matrix-based form:
+                        \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
+                        If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as we effectively move the error backwards through the network:
+                        \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot \sigma'(z^l) \]
+
+                        An equation for the rate of change of the cost function with respect to any weight or bias in the network:
+
+                        \[ \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1} \cdot \delta ^{l}_{j} \quad \quad \frac{\partial C}{\partial b_j^l} = \delta_j^l \]
+
+                        The gradient of the cost function is a vector of the partial derivatives we have calculated for each weight and bias in the network. To minimise the cost function, we adjust all the weights and biases in the direction of the negative gradient, gradually approaching a local minimum, using the gradient descent algorithm. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup
+                        ref
+                        author=""
+                        date="31/03/2025"
+                        src="https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/"></sup>), over multiple iterations to minimise the cost function, gradually improving its accuracy over time.<sup
+                        ref
+                        author="Nielsen MA"
+                        date="30/03/2025"
+                        src="http://neuralnetworksanddeeplearning.com/chap2.html"></sup>
+
+                    </p>
                 </div>
             </div>
             <div class="column">
+                <div class="header"><h2 class="header">Applications</h2></div>
                 <div class="text">
                     <p>
-                        \[ \frac{1}{h}\sum_{i=1}^{h}(e_i)^2 \]
+                        There are various types of machine learning, such as classification, regression, 
+                        clustering, and dimensionality reduction. We have decided to develop a classification 
+                        model that can be implemented in a banking environment to predict fraudulent transactions.
                     </p>
-                </div>
-                <div class="text">
+                    <div class="header"><h3 class="header">Justification</h3></div>
+                    <p>Thinking about the outputs of the model, we would expect a yes/no answer from the model.
+                    Therefore, a classification model is the most suitable to predict whether a transaction is fraudulent or not.
+                    </p>
+                    <div class="header"><h3 class="header">Selecting Model</h3></div>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint distinctio in alias eos suscipit eligendi, ut id dolorem
-                        aliquid. Qui quaerat tempora aut velit distinctio, expedita fugiat esse iste! Maxime.
+                        There are many classification models that we could use, such as Random Forest, Support Vector Machine, Neural Networks, Decision Trees, kNN, etc.
+                        We have decided to use a supervised model. This means that the model learns from labeled data, meaning each input has a known output (e.g., fraud/not fraud). 
+                        This is different to an unsupervised model which finds patterns in unlabeled data, such as grouping similar transactions without predefined fraud labels.
+                        We have to choose a model that is suitable for our data and the problem we are trying to solve.
+                        We have briefly look at many models, such as Support Vector Machine (SVM), linear regression, etc.
+                        However we decided that kNN and Decision Tree are the most suitable for our data since they are easy to interpret, 
+                        handle both numerical and categorical features well, and perform effectively with our dataset size and structure.
+
                     </p>
                 </div>
+                <div class="header"><h2 class="header">Classification</h2></div>
+                <p>A classification model is a type of machine learning model that categorizes data into predefined classes, known as labels. It learns patterns from labeled training data and predicts the class of new, unseen data. For example, in fraud detection, the labels could be "fraudulent" or "genuine."
+                    To build an effective model, the dataset is typically split into training, validation, and test sets to ensure the model generalizes well. A common split is training (70-80%), used for learning, and testing (20-30%), used for evaluation.
+                    <br><br>Two common issues in classification are:</p>
+                    <ul>
+                        <li><b>Underfitting</b>: The model is too simple and fails to learn meaningful patterns, resulting in poor accuracy on both training and test data.</li>
+                        <li><b>Overfitting</b>: The model learns the training data too well, capturing noise instead of general patterns, leading to poor performance on new data.</li>
+                    </ul>
+                    <div class="img">
+                        <img
+                            width="400"
+                            src="fitting.png"
+                            alt="Fitting" />
+                        <p class="caption">
+                            <sup ref author="Flask" date="31/03/2025" src="https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/"></sup>
+                            Graph representation for overfitting and underfitting
+                        </p>
+                    </div>
+                    <p>A well-balanced model avoids both overfitting and underfitting to ensure accurate predictions on real-world data.</p>
             </div>
             <div class="column">
-                <div class="text">
+                <div class="header"><h2 class="header">Analysing Data</h2></div>
+                <p>To create an accurate model, we first needed to understand the problem: 
+                    Which values in the dataset (we used synthetic data from Kaggle<sup ref author="Kaggle" date="31/03/2025" src="https://www.kaggle.com/datasets/kartik2112/fraud-detection/data"></sup>, 
+                    which accurately represents real bank transactions) would be useful in predicting whether a transaction is fraudulent. 
+                    We began our analysis by plotting various features (e.g., credit card numbers, transaction locations) against the fraud label to identify patterns that could help predict fraudulent transactions.</p>
+                    <div class="img">
+                        <img
+                            width="400"
+                            src="categories.png"
+                            alt="percentage per categories" />
+                    </div>
+                    <p class="caption" style="text-align: center;">(Percentage of transactions per category graph)</p>
+                    <div class="img">
+                        <img
+                            width="400"
+                            height="140"
+                            src="hour.png"
+                            alt="hour against fraud" />
+                    </div>
+                    <p class="caption" style="text-align: center;">(Transactions time against time graph)</p>
+                    <div class="img">
+                        <img
+                            width="400"
+                            height="140"
+                            src="amt.png"
+                            alt="transaction amount against time" />
+                    </div>
+                    <p class="caption" style="text-align: center;">(Transactions amount against time graph)</p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolores assumenda, molestias praesentium odit, eveniet
-                        voluptate necessitatibus natus iusto sapiente fugit! Deleniti sit iusto vero, itaque fugit adipisci ipsa velit!
+                        We have used matplotlib<sup ref author="matplotlib" date="31/03/2025" src="https://matplotlib.org"></sup> to plot the features against the fraud label and identify patterns that could help predict fraudulent transactions. 
+                        We have found out that the time of transaction, the amount of transaction, and the category of transaction are the most important features to predict whether a transaction is fraudulent or not.
+                        Therefore, we have used these features to train our model.
                     </p>
+                <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
+                <p>
+                    The k-Nearest Neighbors (kNN) algorithm is a simple yet powerful machine learning model used for classification and regression. 
+                    It is a non-parametric, instance-based learning method, meaning it does not explicitly learn a function during training. 
+                    Instead, it memorizes the training data and makes predictions by comparing new data points to their nearest neighbors. 
+                    The key idea is that similar data points tend to belong to the same category. 
+                    The closeness between points is usually measured using Euclidean distance, given by the number of features. 
+                    \[
+                    d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
+                    \]                    
+                    The value of k determines how many neighbors are considered for classification; the most common class among these neighbors is assigned to the new data point.
+                </p>
+                <div class="img">
+                    <img
+                        width="300"
+                        src="knn_code.png"
+                        alt="knn_code" />
                 </div>
+                <p>
+                    In our implementation, the dataset is first split into features (X) and labels (y). The training set (X_train, y_train) comes from balanced_df, 
+                    ensuring that fraud and non-fraud cases are more evenly distributed to prevent bias. The test set (X_test, y_test) is used for evaluation. 
+                    The kNN model is then initialized with k = 6 using KNeighborsClassifier(n_neighbors=6), 
+                    meaning each transaction will be classified based on the majority class among its six nearest neighbors. 
+                    Finally, we train the model using .fit(X_train, y_train), allowing it to store the training data for future predictions. 
+                    To further improve performance, we can experiment with different values of n_neighbors.
+                </p>
+                <div class="header"><h2 class="header">Decision Tree</h2></div>
+                <p>
+                    Decision Trees are another non-parametric, supervised-learning based and easy-to-understand type of maching learning
+                    model, used for classification and regression. This model learns certain rules that the data seems to follow to decide what the target
+                    variable should be, based on the data given, and uses this to predict the label of new data, checking at different stages if certain
+                    characteristics are true or false, as if passing the data through a flow chart.
+                </p>
+                <p>
+                    Decision Trees are very efficient in terms of time, with a similar time complexity of to kNN. However, they're prone to overfitting: even the slightest change in the training data will result in
+                    a completely different tree being generated. This wasn't an issue for our data, however, because ours wasn't being live-fed, so it wasn't changing at all.
+                </p>
             </div>
             <div class="column">
+                <div class="header"><h2 class="header">Evaluation</h2></div>
+                <p>When measuring the efficiency of anything, the first method that comes to mind is measuring it's accuracy, the number of correct predictions over the total number of predictions. However, this isn't as useful as it seems. Say you have 100 training examples, 98 of which are not fraud and 2 of which are fraud.
+                    A dummy model could predict all of these as not fraud and would end up with 98% accuracy, which seems high, but in fact the model is incapable of distinguishing between the 2 classes. As seen, this is mainly an issue when there is an imbalance in the amount of examples of each class.
+                    <br><br> Other methods will measure, for example, how good the model is at predicting only fraud transactions, or how good it is at distinguishing between the two. These methods are: </p>
+                    <div class="header"><h3 class="header">Precision & Recall</h3></div>
+                    <p>Precision, also called True Positive Rate, is a measure of how good the model is at correctly identifying a positive case, in this case
+                        identifying fraud alone. The formula for this is:
+                        \[
+                        Precision = \frac{TP}{TP+FP} 
+                        \]
+                    </p>
+
+
+
+                <div class="header"><h2 class="header">Frontend</h2></div>
+                <p>
+                    We have designed a transaction predictor webpage that allows users to upload a set of transaction data and we can determine if the transaction is fraudulent or genuine.
+                    This was being done by using a Flask API<sup ref author="Flask" date="31/03/2025" src="https://flask.palletsprojects.com/en/stable/"></sup> to handle the backend, using joblib<sup ref author="joblib" date="31/03/2025" src="https://joblib.readthedocs.io/en/stable/"></sup> to load the pre-trained model and feature packages, finally using HTML, CSS and Javascript to connect to the backend.
+                    It can be accessed at <a href="https://machinelearners.onrender.com">https://machinelearners.onrender.com</a>.
+                </p>
+                <div class="img">
+                    <img
+                        width="200"
+                        src="frontend.png"
+                        alt="Frontend" />
+                </div>
+
+                <p>
+                    In the above example, a ridiculous set of data is being input to the transaction predictor:
+                    Someone at 3 a.m. spending $696969 on food and dining, which gave us an output of a fraudulent transaction on both models.
+                </p>
                 <div class="header references"><h2>References</h2></div>
                 <div id="references" class="text"><p></p></div>
             </div>
