@@ -128,7 +128,7 @@ div.column > .header.references {
     background-color: #ad97ff;
 }
 
-#references {
+#references > p {
     text-align: left;
 }
 
