@@ -260,8 +260,7 @@
 
                         \] 
 
-                        These are normally used in tandem to make sure the model can accurately predict positive labels. 
-
+                        These are normally used in tandem to make sure the model can accurately predict positive labels. In the case of our models, our kNN model had a precision and a recall of 6.03% and 93.57% respectively, and in the case of our decision tree, a precision of 7.16% and recall of 94.27%. While a low precision might seem bad, this is just because of the massive imbalance in our dataset; only a small fraction of the set is fraud, but despite this, the model initially assumes every entry has a 50% chance of being fraud or not. This leads to multiple false positives, leading to a low precision.
                     </p> 
 
                     <div class="header"><h3 class="header">Area Under ROC Curve</h3></div> 
