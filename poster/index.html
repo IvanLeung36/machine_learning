@@ -16,8 +16,7 @@
     <body>
         <header id="header">
             <h1>Machine Learning</h1>
-            <h2></h2>
-            <p>TM</p>
+            <h2 id="group-names">Jeremy Courten, Ivan Leung, Robert Ellard, Avni Balan</h2>
         </header>
         <div id="cms-logo-wrapper">
             <a href="https://cms.tela.org.uk">
@@ -43,22 +42,27 @@
                 <div class="header"><h2 class="header">Neural Networks</h2></div>
                 <div class="text">
                     <p>
-                        Neural networks are a type of Machine Learning which is inspired by inspired by the structure and function of biological
-                        neural networks, in brains<sup
-                            ref
-                            author="Wikipedia"
-                            date="03/03/2025"
-                            src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup>
+                        Neural networks are a type of machine learning model inspired by the way biological neural networks in the brain function<sup
+                        ref
+                        author="Wikipedia"
+                        date="03/03/2025"
+                        src="https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29"></sup>. They consist of layers of neurons connected by weights: an input layer that recieves data, one or more hidden layers that process the data, and an output layer that produces the final output. Each neuron (except in the input layer) calculates a weighted sum of its inputs, adds a bias, and applies an activation function to produce its ouput. 
                     </p>
                 </div>
                 <div class="img">
                     <img
-                        width="200"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/375px-Colored_neural_network.svg.png"
+                        width="480"
+                        src="./network.png"
                         alt="Alt Text (image example)" />
                     <p class="caption">
-                        <sup ref author="Wikipedia" date="24/04/2025" src="https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"></sup
-                        >Example of a small neural network
+                        Example of a small neural network
+                    </p>
+                </div>
+                <div class="text">
+                    <p>The sigmoid function is a common activation function defined as: 
+                        \[ \sigma(z) = \frac{1}{1 + e^{-z}} \]
+                        where \(z_j^{l}\) is defined as the weighted sum of the j<sup>th</sup> neuron in the l<sup>th</sup> layer: \[ z_j^{l} = \sum_{k=1}^{n} w_{jk}^{l} a_k^{l-1} + b_j^{l} \quad \quad a_j^{l} = \sigma(z_j^{l}) \] 
+                        It squashes any input into the range (0,1), making it useful for models that output probabilities. However, it suffers from the vanishing gradient problem, where gradients become too small during backpropagation, slowing down learning.
                     </p>
                 </div>
                 <div class="header"><h3 class="header">Backpropagation</h3></div>
@@ -73,8 +77,24 @@
                         from the output and ending at the input (each dimention of the function is a weight/bias in the neurons of a layer, meaning it
                         can have huge numbers of dimentions) to find how to tweak each parameter (weight or bias) to minimise the function (i.e get
                         the results we want.) -->
-                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). The cost function for one training example: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \]
-                        It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. The weights and biases are then updated using gradient descent. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup
+                        Backpropagation is an algorithm used to train neural networks by minimising the cost function, often Mean Squared Error (MSE). The cost function for one training example is shown below: \[ C = \frac{1}{2} \sum_{j=1}^{m} (a_j^L - y_j)^2 \]
+                        It works by calculating the partial derivatives of the cost function with respect to each weight and bias using the chain rule [reference to 3b1b]. 
+                    </p>
+
+                    <p>
+                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, which we call the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error is defined as follows: 
+                        \[ \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial b_j^l} = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]
+                    </p>
+                    <p>For easier computation, we can rewrite the equation in a matrix-based form:
+                        \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
+                        If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as we effectively move the error backwards through the network:
+                        \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot \sigma'(z^l) \]
+
+                        An equation for the rate of change of the cost function with respect to any weight or bias in the network:
+
+                        \[ \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1} \cdot \delta ^{l}_{j} \quad \quad \frac{\partial C}{\partial b_j^l} = \delta_j^l \]
+
+                        The gradient of the cost function is a vector of the partial derivatives we have calculated for each weight and bias in the network. To minimise the cost function, we adjust all the weights and biases in the direction of the negative gradient, gradually approaching a local minimum, using the gradient descent algorithm. This involves subtracting a fraction of the gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup
                         ref
                         author=""
                         date="31/03/2025"
@@ -83,16 +103,7 @@
                         author="Nielsen MA"
                         date="30/03/2025"
                         src="http://neuralnetworksanddeeplearning.com/chap2.html"></sup>
-                    </p>
 
-                    <p>
-                        In order to compute the partial derivatives we need, an intermediate quantity \( \delta ^{l}_{j} \) is introduced, which we call the error in the j<sup>th</sup> neuron in the l<sup>th</sup> layer <sup>[nielsen reference]</sup>, essentially representing how the activation in each neuron contributes to the overall error. The error is defined as follows: 
-                        \[ \delta_j^l = \frac{\partial C}{\partial z_j^l} = \frac{\partial C}{\partial a_j^l} \cdot \sigma '(z_j^l) \]
-                    </p>
-                    <p>For easier computation, we can rewrite the equation in a matrix-based form:
-                        \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \]
-                        If we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as we effectively move the error backwards through the network:
-                        \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot \sigma'(z^l) \]
                     </p>
                 </div>
             </div>
@@ -111,7 +122,7 @@
                     <div class="header"><h3 class="header">Selecting Model</h3></div>
                     <p>
                         There are many classification models that we could use, such as Random Forest, Support Vector Machine, Neural Networks, Decision Trees, kNN, etc.
-                        We have decidede to use a supervised model. This means that the model learns from labeled data, meaning each input has a known output (e.g., fraud/not fraud). 
+                        We have decided to use a supervised model. This means that the model learns from labeled data, meaning each input has a known output (e.g., fraud/not fraud). 
                         This is different to an unsupervised model which finds patterns in unlabeled data, such as grouping similar transactions without predefined fraud labels.
                         We have to choose a model that is suitable for our data and the problem we are trying to solve.
                         We have briefly look at many models, such as Support Vector Machine (SVM), linear regression, etc.
@@ -222,7 +233,7 @@
                         identifying fraud alone. The formula for this is:
                         \[
                         Precision = \frac{TP}{TP+FP} 
-                        ]\
+                        \]
                     </p>
 
 

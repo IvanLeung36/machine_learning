@@ -18,10 +18,10 @@ p {
     text-align: left;
 }
 
-html,
+/* html,
 body {
     background-color: #dce9f5;
-}
+} */
 
 body::-webkit-scrollbar {
     display: none;
@@ -35,11 +35,11 @@ ul {
 header#header {
     height: 80px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
     border-bottom: solid 2px #000;
+    margin-top: 10px;
 }
 
 header#header > h1 {
@@ -47,6 +47,10 @@ header#header > h1 {
     line-height: 50px;
     font-size: 35px;
 }
+
+#group-names {
+    margin-bottom: 10px;
+}   
 
 div#cms-logo-wrapper {
     position: absolute;
@@ -69,6 +73,10 @@ div#content > div.column {
     display: flex;
     flex-direction: column;
     height: fit-content;
+}
+
+ul,li {
+    margin-left: 20px
 }
 
 div.column > * {
@@ -101,6 +109,7 @@ div.column > .text#references {
     border: solid 3px #ad97ff;
     border-width: 0 3px 3px 3px;
     background-color: #ae97ff53;
+    line-height: 12px;
 }
 
 div.column > .header.references {
