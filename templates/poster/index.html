@@ -30,15 +30,15 @@
         </div>
         <div id="content">
             <div class="column">
-                <!-- <div class="header"><h2 class="header">Brief overview</h2></div>
+                <div class="header"><h2 class="header">Brief overview</h2></div>
                 <div class="text">
                     <p>
-                        <b>Machine learning</b> is a subset of <b>Artificial Intelligence</b> which focuses on developing algorithms capable of
+                        Machine learning is a subset of Artificial Intelligence which focuses on developing algorithms capable of
                         "learning" from data and improving their performance over time without being explicitly programmed to do so. These algorithms
                         can identify patterns and make predictions or decisions based on the input data, making machine learning a powerful tool in
                         various applications.
                     </p>
-                </div> -->
+                </div>
                 <div class="header"><h2 class="header">Neural Networks</h2></div>
                 <div class="text">
                     <p>
@@ -89,22 +89,23 @@
                         For easier computation, we can rewrite the equation in a matrix-based form: \[ \delta^L = (a^L - y) \odot \sigma'(z^L) \] If
                         we know the error for a layer, we can use the transpose of the weight matrix to calculate the error of the previous layer, as
                         we effectively move the error backwards through the network: \[ \delta^l = \left( (w^{l+1})^T \delta^{l+1} \right) \odot
-                        \sigma'(z^l) \] An equation for the rate of change of the cost function with respect to any weight or bias in the network: \[
-                        \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1} \cdot \delta ^{l}_{j} \quad \quad \frac{\partial C}{\partial b_j^l} =
-                        \delta_j^l \]
+                        \sigma'(z^l) \]
                     </p>
                 </div>
-                <p>
-                    The gradient of the cost function is a vector of the partial derivatives we have calculated for each weight and bias in the
-                    network. To minimise the cost function, we adjust all the weights and biases in the direction of the negative gradient,
-                    gradually approaching a local minimum, using the gradient descent algorithm. This involves subtracting a fraction of the
-                    gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup>[2]</sup
-                    >), over multiple iterations to minimise the cost function, gradually improving its accuracy over time.<sup>[3]</sup>
-                </p>
             </div>
             <div class="column">
-                <!-- <div class="text">
-                </div> -->
+                <div class="text">
+                    <p>
+                        An equation for the rate of change of the cost function with respect to any weight or bias in the network: \[
+                        \frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1} \cdot \delta ^{l}_{j} \quad \quad \frac{\partial C}{\partial b_j^l} =
+                        \delta_j^l \]
+                        The gradient of the cost function is a vector of the partial derivatives we have calculated for each weight and bias in the
+                        network. To minimise the cost function, we adjust all the weights and biases in the direction of the negative gradient,
+                        gradually approaching a local minimum, using the gradient descent algorithm. This involves subtracting a fraction of the
+                        gradient, scaled by the learning rate (a hyperparameter controlling the size of the updates<sup>[2]</sup
+                        >), over multiple iterations to minimise the cost function, gradually improving its accuracy over time.<sup>[3]</sup>
+                    </p>
+                </div>
                 <div class="header"><h2 class="header">Applications</h2></div>
                 <div class="text">
                     <p>
@@ -155,40 +156,6 @@
                     </p>
                 </div>
                 <p>A well-balanced model avoids both overfitting and underfitting to ensure accurate predictions on real-world data.</p>
-                <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
-                <p>
-                    The k-Nearest Neighbors (kNN) algorithm is a simple yet powerful machine learning model used for classification and regression. It
-                    is a non-parametric, instance-based learning method, meaning it does not explicitly learn a function during training. Instead, it
-                    memorizes the training data and makes predictions by comparing new data points to their nearest neighbors. The key idea is that
-                    similar data points tend to belong to the same category. The closeness between points is usually measured using Euclidean
-                    distance, given by the number of features. \[ d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2} \] The value of k determines how many
-                    neighbors are considered for classification; the most common class among these neighbors is assigned to the new data point.
-                </p>
-                <div class="img">
-                    <img width="300" src="knn_code.png" alt="knn_code" />
-                </div>
-                <p>
-                    In our implementation, the dataset is first split into features (X) and labels (y). The training set (X_train, y_train) comes from
-                    balanced_df, ensuring that fraud and non-fraud cases are more evenly distributed to prevent bias. The test set (X_test, y_test) is
-                    used for evaluation. The kNN model is then initialized with k = 6 using KNeighborsClassifier(n_neighbors=6), meaning each
-                    transaction will be classified based on the majority class among its six nearest neighbors. Finally, we train the model using
-                    .fit(X_train, y_train), allowing it to store the training data for future predictions. To further improve performance, we can
-                    experiment with different values of n_neighbors.
-                </p>
-                <div class="header"><h2 class="header">Decision Tree</h2></div>
-                <p>
-                    Decision Trees are another non-parametric, supervised-learning based and easy-to-understand type of maching learning model, used
-                    for classification and regression. This model learns certain rules that the data seems to follow to decide what the target
-                    variable should be, based on the data given, and uses this to predict the label of new data, checking at different stages if
-                    certain characteristics are true or false, as if passing the data through a flow chart.
-                </p>
-                <p>
-                    Decision Trees are very efficient in terms of time, with a similar time complexity of to kNN. However, they're prone to
-                    overfitting: even the slightest change in the training data will result in a completely different tree being generated. This
-                    wasn't an issue for our data, however, because ours wasn't being live-fed, so it wasn't changing at all.
-                </p>
-            </div>
-            <div class="column">
                 <div class="header"><h2 class="header">Analysing Data</h2></div>
                 <p>
                     To create an accurate model, we first needed to understand the problem: Which values in the dataset (we used synthetic data from
@@ -197,10 +164,12 @@
                     our analysis by plotting various features (e.g., credit card numbers, transaction locations) against the fraud label to identify
                     patterns that could help predict fraudulent transactions.
                 </p>
-                <div class="img">
-                    <img width="400" src="categories.png" alt="percentage per categories" />
-                </div>
-                <p class="caption" style="text-align: center">(Percentage of transactions per category graph)</p>
+                
+            </div>
+            <div class="column"><div class="img">
+                <img width="400" src="categories.png" alt="percentage per categories" />
+            </div>
+            <p class="caption" style="text-align: center">(Percentage of transactions per category graph)</p>
                 <div class="img">
                     <img width="400" height="140" src="hour.png" alt="hour against fraud" />
                 </div>
@@ -215,7 +184,34 @@
                     transaction, the amount of transaction, and the category of transaction are the most important features to predict whether a
                     transaction is fraudulent or not. Therefore, we have used these features to train our model.
                 </p>
-                
+                <div class="header"><h2 class="header">KNN (k-Nearest Neighbours)</h2></div>
+                <p>
+                    The k-Nearest Neighbors (kNN) algorithm is a simple yet powerful machine learning model used for classification and regression. It
+                    is a non-parametric, instance-based learning method, meaning it does not explicitly learn a function during training. Instead, it
+                    memorizes the training data and makes predictions by comparing new data points to their nearest neighbors. The key idea is that
+                    similar data points tend to belong to the same category. The closeness between points is usually measured using Euclidean
+                    distance, given by the number of features. \[ d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2} \] The value of k determines how many
+                    neighbors are considered for classification; the most common class among these neighbors is assigned to the new data point.
+                </p>
+                <div class="img">
+                    <img width="300" src="knn_code.png" alt="knn_code" />
+                </div>
+                <p style="text-align: left;">
+                    In our implementation, it is initialized with k = 6 using KNeighborsClassifier(n_neighbors=6), meaning each
+                    transaction will be classified based on the majority class among its six nearest neighbors. 
+                </p>
+                <div class="header"><h2 class="header">Decision Tree</h2></div>
+                <p>
+                    Decision Trees are another non-parametric, supervised-learning based and easy-to-understand type of maching learning model, used
+                    for classification and regression. This model learns certain rules that the data seems to follow to decide what the target
+                    variable should be, based on the data given, and uses this to predict the label of new data, checking at different stages if
+                    certain characteristics are true or false, as if passing the data through a flow chart.
+                </p>
+                <p>
+                    Decision Trees are very efficient in terms of time, with a similar time complexity of to kNN. However, they're prone to
+                    overfitting: even the slightest change in the training data will result in a completely different tree being generated. This
+                    wasn't an issue for our data, however, because ours wasn't being live-fed, so it wasn't changing at all.
+                </p>
             </div>
             <div class="column">
                 <div class="header"><h2 class="header">Evaluation</h2></div>
@@ -292,14 +288,14 @@
                 <div class="header references"><h2>References</h2></div>
                 <div id="references" class="text"><p>
                     1. Wikipedia contributors (2025) Neural Network (machine learning), Wikipedia. Available at: https://en.wikipedia.org/wiki/Neural_network_%28machine_learning%29 (Accessed: 02 April 2025). 
-                    <br /><br />2. GeeksforGeeks (2024) Learning rate in neural network, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/ (Accessed: 02 April 2025). 
-                    <br /><br />3. Nielsen, M.A. (1970) Neural networks and deep learning. Available at: http://neuralnetworksanddeeplearning.com/chap2.html (Accessed: 02 April 2025). 
-                    <br /><br />4. Sanderson, G. (no date c) Backpropagation calculus, 3Blue1Brown. Available at: https://www.3blue1brown.com/lessons/backpropagation-calculus (Accessed: 02 April 2025). 
-                    <br /><br />5. Comment et al. (2025) ML: Underfitting and overfitting, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/ (Accessed: 02 April 2025). 
-                    <br /><br />6. Shenoy, K. (2020) Credit Card Transactions Fraud Detection Dataset, Kaggle. Available at: https://www.kaggle.com/datasets/kartik2112/fraud-detection/data (Accessed: 02 April 2025). 
-                    <br /><br />7. Visualization with python (no date) Matplotlib. Available at: https://matplotlib.org/ (Accessed: 02 April 2025). 
-                    <br /><br />8. Welcome to flask (no date) Welcome to Flask - Flask Documentation (3.1.x). Available at: https://flask.palletsprojects.com/en/stable/ (Accessed: 02 April 2025). 
-                    <br /><br />9. Running python functions as pipeline jobs (no date) Joblib. Available at: https://joblib.readthedocs.io/en/stable/ (Accessed: 02 April 2025). </p></div>
+                    <br />2. GeeksforGeeks (2024) Learning rate in neural network, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/impact-of-learning-rate-on-a-model/ (Accessed: 02 April 2025). 
+                    <br />3. Nielsen, M.A. (1970) Neural networks and deep learning. Available at: http://neuralnetworksanddeeplearning.com/chap2.html (Accessed: 02 April 2025). 
+                    <br />4. Sanderson, G. (no date c) Backpropagation calculus, 3Blue1Brown. Available at: https://www.3blue1brown.com/lessons/backpropagation-calculus (Accessed: 02 April 2025). 
+                    <br />5. Comment et al. (2025) ML: Underfitting and overfitting, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/ (Accessed: 02 April 2025). 
+                    <br />6. Shenoy, K. (2020) Credit Card Transactions Fraud Detection Dataset, Kaggle. Available at: https://www.kaggle.com/datasets/kartik2112/fraud-detection/data (Accessed: 02 April 2025). 
+                    <br />7. Visualization with python (no date) Matplotlib. Available at: https://matplotlib.org/ (Accessed: 02 April 2025). 
+                    <br />8. Welcome to flask (no date) Welcome to Flask - Flask Documentation (3.1.x). Available at: https://flask.palletsprojects.com/en/stable/ (Accessed: 02 April 2025). 
+                    <br />9. Running python functions as pipeline jobs (no date) Joblib. Available at: https://joblib.readthedocs.io/en/stable/ (Accessed: 02 April 2025). </p></div>
             </div>
         </div>
     </body>
