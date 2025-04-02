@@ -65,6 +65,8 @@ def predict():
         # Map prediction to label
         prediction_label = "Fraud" if prediction[0] == 1 else "Genuine Transaction"
         if feature_vector[features.index('amt')] > 7699:prediction_label = "Fraud" 
+        if feature_vector[features.index('amt')] <= 0:prediction_label = "Please enter a positive value"
+        if (feature_vector[features.index('amt')] * 1000) % 1 != 0: prediction_label = "Please enter a valid amount"
         return jsonify({'prediction': prediction_label})
 
     except Exception as e:

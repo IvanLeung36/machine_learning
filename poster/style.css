@@ -116,6 +116,9 @@ div.column > .text#references {
     border-width: 0 3px 3px 3px;
     background-color: #ae97ff53;
     line-height: 12px;
+
+    font-size: 10px;
+    line-height: 10px;
 }
 
 div.column > .header.references {
